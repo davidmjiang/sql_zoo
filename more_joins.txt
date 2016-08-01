@@ -58,7 +58,25 @@ HAVING COUNT(title)=(SELECT MAX(c) FROM
   WHERE actorid IN (
     SELECT id FROM actor
     WHERE name='Julie Andrews')) AND ord = 1
-14.
+14.select name from 
+(select name, count(ord) as lead
+from actor join casting on id=actorid
+where ord =1
+group by name) as stars
+where stars.lead >= 30
+15. select title, actor_count
+from movie join (
+select movieid, count(actorid) as actor_count
+from casting
+group by movieid) as actors on movieid = id
+where yr = 1978
+order by actor_count desc
+16. select distinct name
+from actor join casting on id=actorid
+where movieid in (
+select movieid
+from actor join casting on id=actorid
+where name = 'Art Garfunkel')
 
 
 
