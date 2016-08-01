@@ -1,0 +1,63 @@
+2. SELECT name FROM world
+WHERE population>200000000
+
+3. SELECT name, (gdp/population) as 'per capita gdp' FROM world
+WHERE population>200000000
+
+4. select name, (population/1000000) as 'popn millions'
+from world
+where continent = 'South America'
+
+5. select name, population
+from world
+where name in ('France', 'Germany', 'Italy')
+
+6. select name 
+from world
+where name like '%United%'
+
+7. select name, population, area
+from world
+where area > 3000000
+or
+population > 250000000
+
+8. select name, population, area
+from world
+
+where area > 3000000
+xor
+population > 250000000
+
+9. select name, round(population/1000000, 2) as 'popn millions', round(gdp/1000000000, 2) as 'gdp billions'
+from world
+where continent = 'South America'
+
+10. select name, round(gdp/population, -3) as 'per capita gdp'
+from world
+where gdp >= 1000000000000
+
+11. SELECT name,
+       CASE WHEN continent='Oceania' THEN 'Australasia'
+            ELSE continent END
+  FROM world
+ WHERE name LIKE 'N%'
+
+ 12. select name, 
+case 
+WHEN continent in ('Europe', 'Asia') THEN 'Eurasia'
+WHEN continent in ('North America', 'South America', 'Caribbean') THEN 'America'
+ELSE continent END
+
+FROM world
+WHERE name like 'A%' or name like 'B%'
+
+13. select name, continent,
+case
+when continent = 'Oceania' then 'Australasia'
+when continent in ('Eurasia', 'Turkey') then 'Europe/Asia'
+when continent = 'Caribbean' and name like 'B%' then 'North America'
+when continent = 'Caribbean' and not name like 'B%' then 'South America'
+else continent end
+from world
+order by name
